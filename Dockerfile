@@ -2,7 +2,7 @@ FROM codetroopers/jenkins-slave-jdk8-android:23-23.0.2
 
 USER root
 RUN apt-get update
-RUN apt-get -y install qemu-kvm
+RUN apt-get -y install qemu-kvm curl
 
 USER jenkins
 WORKDIR /home/jenkins
