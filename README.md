@@ -4,7 +4,7 @@ You can launch a `cgeo-executor-1` from the `cgeo-executor` image using `docker`
 
     docker run -d --device /dev/kvm --cpuset-cpus=12-15 \
       --memory=4g --memory-reservation=3g \
-      --name cgeo-executor-1 -v PATH-TO-YOUR-SRV:/srv cgeo-executor
+      --name cgeo-executor-1 -v PATH-TO-YOUR-SRV:/srv cgeo/cgeo-executor
 
 Here, the executor  has access to `/dev/kvm`, is restricted to 4 CPUs (12 to 15),
 and can use at most 4GB of RAM (2GB preferred).
