@@ -11,5 +11,5 @@ if [ -z "$slave" -o -z "$secret" ]; then
   exit 1
 fi
 adb start-server
-emulator -avd emulator -no-window -no-boot-anim -no-audio -memory 2048 -qemu -enable-kvm &
+rm -f emulator.pid
 java -jar slave.jar -jnlpUrl http://ci.cgeo.org/computer/$slave/slave-agent.jnlp -secret $secret
