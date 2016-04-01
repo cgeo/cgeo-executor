@@ -10,7 +10,7 @@ WORKDIR /home/jenkins
 RUN echo 'PATH=/opt/tools:/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:$PATH' >> .profile
 RUN wget http://ci.cgeo.org/jnlpJars/slave.jar
 RUN mkdir slave
-RUN ["android-accept-licenses.sh", "android update sdk --all --no-ui --filter android-19,android-22,addon-google_apis-google-22,addon-google_apis-google-23,sys-img-x86_64-addon-google_apis-google-23,extra-android-support,extra-android-m2repository"]
+RUN ["android-accept-licenses.sh", "android update sdk --all --no-ui --filter android-19,android-22,android-23,addon-google_apis-google-22,addon-google_apis-google-23,sys-img-x86_64-addon-google_apis-google-23,extra-android-support,extra-android-m2repository,build-tools-23.0.3"]
 RUN android create avd -n emulator -t "Google Inc.:Google APIs:23" -c 50M -d "Nexus 4" -g google_apis -b x86_64
 ADD start.sh /home/jenkins/
 ADD restart-emulator.sh /home/jenkins/
