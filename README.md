@@ -1,3 +1,7 @@
+# Project status
+
+[![imagelayers](https://imagelayers.io/badge/cgeo/cgeo-executor:latest.svg)](https://imagelayers.io/?images=cgeo/cgeo-executor:latest)<br>
+
 # Using cgeo-executor
 
 You can launch a `cgeo-executor-1` from the `cgeo-executor` image using `docker`:
