@@ -3,7 +3,7 @@ FROM codetroopers/jenkins-slave-jdk8-android:23-23.0.2
 USER root
 RUN apt-get update \
     && apt-get -y install \
-        qemu-kvm \
+        qemu-kvm curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
