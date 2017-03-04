@@ -4,6 +4,7 @@
 export SHELL=/bin/bash
 export PATH=/opt/tools:/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:$PATH
 export TERM=dumb
+export QEMU_AUDIO_DRV=none
 
 cd "$HOME"
 
@@ -29,6 +30,6 @@ fi
 if [ "x$1" = "x--stop" ]; then
   rm -f $PIDFILE
 else
-  emulator -avd emulator -no-window -no-boot-anim -no-audio -memory 2048 -qemu -enable-kvm &
+  emulator -avd emulator -no-window -no-boot-anim -memory 2048 -qemu -enable-kvm &
   echo $! > $PIDFILE
 fi
