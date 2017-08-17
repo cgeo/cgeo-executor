@@ -1,0 +1,22 @@
+version: '2.2'
+services:
+
+  cgeo_executor:
+    image: cgeo-executor
+    build: .
+    volumes:
+      - ./credentials:/srv
+    devices:
+      - /dev/kvm
+    mem_limit: 8g
+    mem_reservation: 4g
+    #cpuset: 0-3
+    cpu_count: 4
+    restart: always
+    networks:
+      cgeo-slave:
+
+
+
+networks:
+  cgeo-slave:
