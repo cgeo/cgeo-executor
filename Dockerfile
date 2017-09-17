@@ -17,6 +17,9 @@ RUN ["android-accept-licenses.sh", "android update sdk --all --no-ui --filter an
 RUN android create avd -n emulator -t "android-23" -c 50M -d "Nexus 4" -g google_apis -b google_apis/x86_64
 ADD start.sh /home/jenkins/
 ADD restart-emulator.sh /home/jenkins/
+COPY adb+ /usr/local/bin/
+RUN mv /opt/android-sdk-linux/platform-tools/adb /opt/android-sdk-linux/platform-tools/adb.orig \
+  && ln -s /usr/local/bin/adb+ /opt/android-sdk-linux/platform-tools/adb
 ENTRYPOINT /home/jenkins/start.sh
 
 # Launch with:

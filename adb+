@@ -1,0 +1,19 @@
+#!/bin/bash
+# Script adb+
+# Usage
+# You can run any command adb provides on all your currently connected devices
+# ./adb+ <command> is the equivalent of ./adb -s <serial number> <command>
+#
+# Examples
+# ./adb+ version
+# ./adb+ install apidemo.apk
+# ./adb+ uninstall com.example.android.apis
+
+
+devices=$(/opt/android-sdk-linux/platform-tools/adb.orig devices | grep "device$" | awk '{print $1}')
+
+for device in $devices;
+do
+    echo "$device $@ ..."
+    /opt/android-sdk-linux/platform-tools/adb.orig -s $device $@
+done
