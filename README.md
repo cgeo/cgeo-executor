@@ -22,3 +22,12 @@ at least those files:
 - cgeo.geocaching_preferences.xml
 
 The user running docker must have access to `/dev/kvm`.
+
+# Upgrade Android sdk tools
+
+Sdk tools are managed in file `android-packages`. Image need to be rebuilt when changed.
+To find which names are available, this command will be useful:
+```
+sdkmanager --list --verbose | grep -vP "^Info:|^\s|^$|^done$"
+```
+see: https://stackoverflow.com/questions/42460205/truncated-android-sdk-package-paths-from-sdkmanager-cli
