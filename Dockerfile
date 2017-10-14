@@ -36,7 +36,7 @@ COPY android-packages /tmp/
 RUN yes | sdkmanager --licenses \
     && yes | sdkmanager --package_file=/tmp/android-packages --verbose \
     && useradd -m jenkins \
-    && chown -R jenkins. /opt/android-sdk-linux/
+    && chown -R jenkins. /opt/android-sdk-linux/ \
     && cd /opt/android-sdk-linux/platform-tools/ \
     && mv adb adb.orig \
     && ln -s /usr/local/bin/adb+ adb \
