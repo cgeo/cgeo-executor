@@ -46,7 +46,6 @@ COPY scripts/* /usr/local/bin/
 # To be compatible with old Jenkins scripts
 COPY scripts/restart-emulator.sh /home/jenkins/restart-emulator.sh
 
-COPY etc/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY emulators.conf /etc/supervisor/conf.d/emulators.conf
 
 WORKDIR /home/jenkins
