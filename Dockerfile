@@ -23,7 +23,7 @@ RUN apt-get update \
 
 ENV SDK_VERSION=3859397
 ENV ANDROID_HOME=/opt/android-sdk-linux/
-ENV PATH=$PATH:/opt/android-sdk-linux/tools/:/opt/android-sdk-linux/tools/bin/
+ENV PATH=$PATH:/opt/android-sdk-linux/tools/:/opt/android-sdk-linux/tools/bin/:/opt/android-sdk-linux/platform-tools/
 ENV QEMU_AUDIO_DRV=none
 
 ADD https://dl.google.com/android/repository/sdk-tools-linux-${SDK_VERSION}.zip /tmp/sdk-tools-linux.zip
