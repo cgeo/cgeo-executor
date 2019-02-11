@@ -3,7 +3,7 @@ services:
 
   android_23_1:
     container_name: android-23-1
-    image: cgeo-executor:2.0.1
+    image: cgeo-executor:2.0.2
     build: .
     volumes:
       - /srv/jenkins/credentials-cgeo-1:/srv
@@ -18,7 +18,7 @@ services:
 
   android_23_2:
     container_name: android-23-2
-    image: cgeo-executor:2.0.1
+    image: cgeo-executor:2.0.2
     build: .
     volumes:
       - /srv/jenkins/credentials-cgeo-2:/srv
