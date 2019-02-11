@@ -35,6 +35,7 @@ RUN unzip /tmp/sdk-tools-linux.zip -d /opt/android-sdk-linux/ \
 COPY android-packages /tmp/
 RUN yes | sdkmanager --licenses \
     && yes | sdkmanager --package_file=/tmp/android-packages --verbose \
+    && yes | sdkmanager --update \
     && useradd -m jenkins \
     && chown -R jenkins. /opt/android-sdk-linux/ \
     && cd /opt/android-sdk-linux/platform-tools/ \
