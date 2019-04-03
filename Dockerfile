@@ -26,14 +26,13 @@ ENV ANDROID_HOME=/opt/android-sdk-linux/
 ENV PATH=$PATH:/opt/android-sdk-linux/tools/:/opt/android-sdk-linux/tools/bin/:/opt/android-sdk-linux/platform-tools/
 ENV QEMU_AUDIO_DRV=none
 
-ADD https://dl.google.com/android/repository/sdk-tools-linux-${SDK_VERSION}.zip /tmp/sdk-tools-linux.zip
-
-RUN unzip /tmp/sdk-tools-linux.zip -d /opt/android-sdk-linux/ \
-    && rm -f /tmp/sdk-tools-linux.zip \
-    && mkdir -p /var/log/supervisor
-
 COPY android-packages /tmp/
-RUN yes | sdkmanager --licenses \
+
+RUN wget -O /tmp/sdk-tools-linux.zip https://dl.google.com/android/repository/sdk-tools-linux-${SDK_VERSION}.zip \
+    && unzip /tmp/sdk-tools-linux.zip -d /opt/android-sdk-linux/ \
+    && rm -f /tmp/sdk-tools-linux.zip \
+    && mkdir -p /var/log/supervisor \
+    && yes | sdkmanager --licenses \
     && yes | sdkmanager --package_file=/tmp/android-packages --verbose \
     && yes | sdkmanager --update \
     && useradd -m jenkins \
