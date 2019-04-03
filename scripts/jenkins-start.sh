@@ -13,5 +13,6 @@ if [ -z "$JENKINS_URL" ]; then
   JENKINS_URL="http://ci.cgeo.org"
 fi
 
+rm -f /tmp/slave*
 wget $JENKINS_URL/jnlpJars/slave.jar -P /tmp/
 java -jar /tmp/slave.jar -jnlpUrl $JENKINS_URL/computer/$slave/slave-agent.jnlp -secret $secret
