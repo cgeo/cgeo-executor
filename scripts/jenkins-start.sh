@@ -9,8 +9,8 @@ if [ -z "$slave" -o -z "$secret" ]; then
 fi
 
 if [ -z "$JENKINS_URL" ]; then
-  echo "W: Setting JENKINS_URL to default value: http://ci.cgeo.org"
-  JENKINS_URL="http://ci.cgeo.org"
+  JENKINS_URL="https://ci.cgeo.org"
+  echo "W: Setting JENKINS_URL to default value: $JENKINS_URL"
 fi
 
 rm -f /tmp/slave*
