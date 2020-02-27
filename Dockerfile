@@ -21,7 +21,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-ENV SDK_VERSION=3859397
+ENV SDK_VERSION=4333796
 ENV ANDROID_HOME=/opt/android-sdk-linux/
 ENV PATH=$PATH:/opt/android-sdk-linux/tools/:/opt/android-sdk-linux/tools/bin/:/opt/android-sdk-linux/platform-tools/
 ENV QEMU_AUDIO_DRV=none
@@ -33,8 +33,9 @@ RUN wget -O /tmp/sdk-tools-linux.zip https://dl.google.com/android/repository/sd
     && rm -f /tmp/sdk-tools-linux.zip \
     && mkdir -p /var/log/supervisor \
     && yes | sdkmanager --licenses \
-    && yes | sdkmanager --package_file=/tmp/android-packages --verbose \
+    && while read p; do echo "y" | sdkmanager "${p}"; done </tmp/android-packages \
     && yes | sdkmanager --update \
+    && yes | sdkmanager --licenses \
     && useradd -m jenkins \
     && chown -R jenkins. /opt/android-sdk-linux/ \
     && cd /opt/android-sdk-linux/platform-tools/ \
