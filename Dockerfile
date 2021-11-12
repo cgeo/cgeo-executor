@@ -1,10 +1,10 @@
-FROM ubuntu:latest
+FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-    && apt-get -y install \
-        openjdk-8-jdk-headless \
+    && DEBIAN_FRONTEND="noninteractive" TZ="Europe/Ljubljana" apt-get -y install \
+        openjdk-11-jdk-headless \
         wget \
         curl \
         unzip \
@@ -29,17 +29,17 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+ENV ANDROID_SDK_VERSION=7583922
 ENV ANDROID_HOME=/opt/android-sdk-linux/
-ENV PATH=$PATH:/opt/android-sdk-linux/cmdline-tools/latest/:/opt/android-sdk-linux/cmdline-tools/latest/bin/:/opt/android-sdk-linux/platform-tools/
+ENV PATH=$PATH:/opt/android-sdk-linux/tools/:/opt/android-sdk-linux/cmdline-tools/latest/bin:/opt/android-sdk-linux/cmdline-tools/tools/bin:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/emulator
 ENV QEMU_AUDIO_DRV=none
 
 COPY android-packages /tmp/
 
-RUN wget -nv -O /tmp/sdk-tools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip \
-    && mkdir /opt/android-sdk-linux \
-    && unzip /tmp/sdk-tools-linux.zip -d /opt/android-sdk-linux/cmdline-tools/ \
+RUN wget -O /tmp/sdk-tools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip \
+    && mkdir /opt/android-sdk-linux/ \
+    && unzip /tmp/sdk-tools-linux.zip -d /opt/android-sdk-linux/cmdline-tools \
     && mv /opt/android-sdk-linux/cmdline-tools/cmdline-tools/ /opt/android-sdk-linux/cmdline-tools/latest/ \
-    && rm -f /tmp/sdk-tools-linux.zip \
     && mkdir -p /var/log/supervisor \
     && yes | sdkmanager --licenses \
     && while read p; do echo "y" | sdkmanager "${p}"; done </tmp/android-packages \
@@ -62,7 +62,7 @@ ENV DISPLAY=:0 \
     SCREEN_HEIGHT=900 \
     SCREEN_DEPTH=24+32 \
     LOG_PATH=/var/log/supervisor \
-    ANDROID_API_VERSION=28 \
+    ANDROID_API_VERSION=30 \
     ANDROID_IMAGE=system-images;android-30;google_apis;x86_64 \
     ANDROID_ARCH=x86_64
 
