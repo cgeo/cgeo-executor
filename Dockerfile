@@ -19,13 +19,8 @@ RUN apt-get update \
         iputils-ping \
         supervisor \
         qemu-kvm \
-        x11vnc \
-        openbox \
-        feh \
         sudo \
-        libqt5webkit5 \
         libgconf-2-4 \
-        xvfb \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
