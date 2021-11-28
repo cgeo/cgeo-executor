@@ -41,8 +41,9 @@ RUN wget -O /tmp/sdk-tools-linux.zip https://dl.google.com/android/repository/co
     && unzip /tmp/sdk-tools-linux.zip -d /opt/android-sdk-linux/cmdline-tools \
     && mv /opt/android-sdk-linux/cmdline-tools/cmdline-tools/ /opt/android-sdk-linux/cmdline-tools/latest/ \
     && mkdir -p /var/log/supervisor \
-    && yes | sdkmanager --licenses \
-    && while read p; do echo "y" | sdkmanager "${p}"; done </tmp/android-packages \
+    && yes | sdkmanager --licenses
+
+RUN while read p; do echo "y" | sdkmanager "${p}"; done </tmp/android-packages \
     && yes | sdkmanager --update \
     && yes | sdkmanager --licenses \
     && useradd -m jenkins \
@@ -56,12 +57,7 @@ COPY scripts/* /usr/local/bin/
 # To be compatible with old Jenkins scripts
 COPY scripts/restart-emulator.sh /home/jenkins/restart-emulator.sh
 
-ENV DISPLAY=:0 \
-    SCREEN=0 \
-    SCREEN_WIDTH=1600 \
-    SCREEN_HEIGHT=900 \
-    SCREEN_DEPTH=24+32 \
-    LOG_PATH=/var/log/supervisor \
+ENV LOG_PATH=/var/log/supervisor \
     ANDROID_API_VERSION=30 \
     ANDROID_IMAGE=system-images;android-30;google_apis;x86_64 \
     ANDROID_ARCH=x86_64
